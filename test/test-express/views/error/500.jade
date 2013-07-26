@@ -1,0 +1,8 @@
+extends ../layout_error
+
+block main
+    div.alert.alert-error
+        p.title
+            | 對不起，內部出現錯誤
+        p #{error}
+    a.back(href='/') 回到首頁
