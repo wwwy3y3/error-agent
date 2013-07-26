@@ -28,9 +28,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/wwwy3y3/cassandra-simple-orm.git"
+    "url": "git://github.com/wwwy3y3/error-agent.git"
   },
   "bugs": {
-    "url": "https://github.com/wwwy3y3/cassandra-simple-orm/issues"
+    "url": "https://github.com/wwwy3y3/error-agent/issues"
   }
 }
