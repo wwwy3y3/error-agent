@@ -32,6 +32,10 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
+ErrorAgent.register("PW_WRONG", function (req, res) {
+  res.render("relogin", { title:"relogin", msg: "pw wrong" });
+})
+
 app.get('/', routes.index);
 app.get('/users', user.list);
 
@@ -42,16 +46,29 @@ app.get('/404', function(req, res, next){
   next();
 });
 
+app.get('/also404', function(req, res, next){
+  // trigger a 403 error
+  next(ErrorAgent.handle({status: 404, msg: "not found"}));
+});
+
+app.get('/relogin', function(req, res, next){
+  // trigger a 403 error
+  next(ErrorAgent.handle({status: 200, msg: "not found", code: "PW_WRONG"}));
+});
+
 app.get('/403', function(req, res, next){
   // trigger a 403 error
-  var err = new Error('not allowed!');
-  err.httpCode = 403;
-  next(err);
+  next(ErrorAgent.handle({status: 403, msg: "not auth"}));
 });
 
 app.get('/500', function(req, res, next){
   // trigger a generic (500) error
   next(new Error('keyboard cat!'));
+});
+
+app.get('/also500', function(req, res, next){
+  // trigger a generic (500) error
+  next(ErrorAgent.handle({status: 500, msg: "internal ??? haha"}));
 });
 
 http.createServer(app).listen(app.get('port'), function(){
