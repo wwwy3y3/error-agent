@@ -32,13 +32,7 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
-ErrorAgent.register("PW_WRONG", function (req, res) {
-  res.render("relogin", { title:"relogin", msg: "pw wrong" });
-})
-
-ErrorAgent.register("TESTERR", function (req, res) {
-  res.render("error/test", { title:"testerr", msg: "test err" });
-})
+ErrorAgent.config({ codesPath: __dirname + '/errors.js' })
 
 app.get('/', routes.index);
 app.get('/users', user.list);
