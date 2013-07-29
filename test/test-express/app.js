@@ -36,6 +36,10 @@ ErrorAgent.register("PW_WRONG", function (req, res) {
   res.render("relogin", { title:"relogin", msg: "pw wrong" });
 })
 
+ErrorAgent.register("TESTERR", function (req, res) {
+  res.render("error/test", { title:"testerr", msg: "test err" });
+})
+
 app.get('/', routes.index);
 app.get('/users', user.list);
 
@@ -53,7 +57,7 @@ app.get('/also404', function(req, res, next){
 
 app.get('/relogin', function(req, res, next){
   // trigger a 403 error
-  next(ErrorAgent.handle({status: 200, msg: "not found", code: "PW_WRONG"}));
+  next(ErrorAgent.handle({code: "PW_WRONG"}));
 });
 
 app.get('/403', function(req, res, next){
@@ -63,7 +67,13 @@ app.get('/403', function(req, res, next){
 
 app.get('/500', function(req, res, next){
   // trigger a generic (500) error
-  next(new Error('keyboard cat!'));
+  next(err);
+});
+
+app.get('/test500', function(req, res, next){
+  // test error with code
+  var err= new Error('keyboard cat!');
+  next( ErrorAgent.handle({err: err, code: "TESTERR"}) );
 });
 
 app.get('/also500', function(req, res, next){
