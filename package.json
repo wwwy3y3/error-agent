@@ -1,6 +1,6 @@
 {
   "name": "error-agent",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "author": "wwwy3y3 <wwwy3y3@gmail.com>",
   "description": "a simple error handler",
   "contributors": [
