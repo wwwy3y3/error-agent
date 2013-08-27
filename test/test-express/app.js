@@ -32,7 +32,7 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
-ErrorAgent.config({ codesPath: __dirname + '/errors.js' })
+ErrorAgent.config({ codesPath: __dirname + '/errors.js', folder: 'error/' })
 
 app.get('/', routes.index);
 app.get('/users', user.list);
