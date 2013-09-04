@@ -59,6 +59,11 @@ app.get('/403', function(req, res, next){
   next(ErrorAgent.handle({status: 403, msg: "not auth"}));
 });
 
+app.get('/400', function(req, res, next){
+  // trigger a 403 error
+  next(ErrorAgent.handle({status: 400, msg: "not auth"}));
+});
+
 app.get('/500', function(req, res, next){
   // trigger a generic (500) error
   next(err);

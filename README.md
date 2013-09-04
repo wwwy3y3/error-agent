@@ -41,7 +41,7 @@ and pass the error object to `use`, pass `req`, `res` to `send`
 it will deal with it for you
 
 ```javascript
-errorAgent.use(err).send(req, res);
+errorAgent.send(err, req, res);
 ```
 
 
